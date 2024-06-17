@@ -11,7 +11,7 @@ import java.util.List;
 public class Employer extends AbstractEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employer_Id")
+    @JoinColumn(name = "employer_id")
     private final List<Job> jobs = new ArrayList<>();
 
     @NotBlank
