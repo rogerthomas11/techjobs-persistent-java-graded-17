@@ -12,7 +12,7 @@ public class Employer extends AbstractEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "employer_id")
-    private final List<Job> jobs = new ArrayList<>();
+    public List<Job> jobs = new ArrayList<>();
 
     @NotBlank
     @Size(min = 3, max = 100)

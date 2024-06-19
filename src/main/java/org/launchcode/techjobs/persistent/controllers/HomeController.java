@@ -8,6 +8,7 @@ import org.launchcode.techjobs.persistent.models.data.EmployerRepository;
 import org.launchcode.techjobs.persistent.models.data.JobRepository;
 import org.launchcode.techjobs.persistent.models.data.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -74,8 +75,14 @@ public class HomeController {
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
-
+        Optional optionalJob = jobRepository.findById(jobId);
+        if (optionalJob.isPresent()) {
+            Job job = (Job) optionalJob.get();
+            model.addAttribute("job", job);
             return "view";
+        } else {
+            return "redirect:../";
+        }
     }
 
 }
